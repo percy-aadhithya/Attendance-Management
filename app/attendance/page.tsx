@@ -3,6 +3,8 @@ import { getAttendance } from "@/app/actions/attendance"
 import { AttendanceFilters } from "@/components/attendance/AttendanceFilters"
 import { AttendanceList } from "@/components/attendance/AttendanceList"
 
+export const dynamic = 'force-dynamic'
+
 export default async function AttendancePage({
     searchParams,
 }: {
