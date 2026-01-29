@@ -1,6 +1,8 @@
 import { getLocations, getClasses } from '@/app/actions/students'
 import { StudentForm } from '@/components/students/StudentForm'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AddStudentPage() {
     const [locations, classes] = await Promise.all([
         getLocations(),

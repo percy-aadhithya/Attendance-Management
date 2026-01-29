@@ -31,6 +31,8 @@ async function getStudent(id: string) {
     return student
 }
 
+export const dynamic = 'force-dynamic'
+
 export default async function StudentDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const resolvedParams = await params
     const student = await getStudent(resolvedParams.id)
