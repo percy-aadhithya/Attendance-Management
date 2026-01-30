@@ -35,49 +35,51 @@ export function AttendanceList({
     }
 
     return (
-        <div className="border rounded-md">
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead className="w-[50px]">Status</TableHead>
-                        <TableHead>Student Name</TableHead>
-                        <TableHead className="text-right">Action</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {students.length === 0 ? (
+        <div className="border rounded-md overflow-hidden">
+            <div className="overflow-x-auto">
+                <Table>
+                    <TableHeader>
                         <TableRow>
-                            <TableCell colSpan={3} className="h-24 text-center">
-                                No students enrolled in this class at this location.
-                            </TableCell>
+                            <TableHead className="w-[50px] whitespace-nowrap">Status</TableHead>
+                            <TableHead className="whitespace-nowrap">Student Name</TableHead>
+                            <TableHead className="text-right whitespace-nowrap">Action</TableHead>
                         </TableRow>
-                    ) : (
-                        students.map((student) => {
-                            const isPresent = student.attendance.length > 0 && student.attendance[0].status === "PRESENT"
-                            return (
-                                <TableRow key={student.id} className={cn(isPresent ? "bg-muted/50" : "")}>
-                                    <TableCell>
-                                        <div className={cn(
-                                            "h-3 w-3 rounded-full",
-                                            isPresent ? "bg-green-500" : "bg-gray-300"
-                                        )} />
-                                    </TableCell>
-                                    <TableCell className="font-medium">
-                                        {student.name}
-                                    </TableCell>
-                                    <TableCell className="text-right">
-                                        <ButtonTag
-                                            isPresent={isPresent}
-                                            onClick={() => handleToggle(student.id, isPresent)}
-                                            disabled={isPending}
-                                        />
-                                    </TableCell>
-                                </TableRow>
-                            )
-                        })
-                    )}
-                </TableBody>
-            </Table>
+                    </TableHeader>
+                    <TableBody>
+                        {students.length === 0 ? (
+                            <TableRow>
+                                <TableCell colSpan={3} className="h-24 text-center">
+                                    No students enrolled in this class at this location.
+                                </TableCell>
+                            </TableRow>
+                        ) : (
+                            students.map((student) => {
+                                const isPresent = student.attendance.length > 0 && student.attendance[0].status === "PRESENT"
+                                return (
+                                    <TableRow key={student.id} className={cn(isPresent ? "bg-muted/50" : "")}>
+                                        <TableCell>
+                                            <div className={cn(
+                                                "h-3 w-3 rounded-full",
+                                                isPresent ? "bg-green-500" : "bg-gray-300"
+                                            )} />
+                                        </TableCell>
+                                        <TableCell className="font-medium whitespace-nowrap">
+                                            {student.name}
+                                        </TableCell>
+                                        <TableCell className="text-right">
+                                            <ButtonTag
+                                                isPresent={isPresent}
+                                                onClick={() => handleToggle(student.id, isPresent)}
+                                                disabled={isPending}
+                                            />
+                                        </TableCell>
+                                    </TableRow>
+                                )
+                            })
+                        )}
+                    </TableBody>
+                </Table>
+            </div>
         </div>
     )
 }
@@ -88,13 +90,14 @@ function ButtonTag({ isPresent, onClick, disabled }: { isPresent: boolean, onCli
             onClick={onClick}
             disabled={disabled}
             className={cn(
-                "px-3 py-1 rounded-full text-xs font-semibold transition-all border",
+                "px-3 py-1 rounded-full text-xs font-semibold transition-all border whitespace-nowrap",
                 isPresent
                     ? "bg-green-100 text-green-700 border-green-200 hover:bg-green-200"
                     : "bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200"
             )}
         >
-            {isPresent ? "Present" : "Mark Present"}
+            <span className="sm:hidden">{isPresent ? "Present" : "Mark"}</span>
+            <span className="hidden sm:inline">{isPresent ? "Present" : "Mark Present"}</span>
         </button>
     )
 }

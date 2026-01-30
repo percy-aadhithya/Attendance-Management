@@ -21,10 +21,9 @@ type FeeRecord = {
 }
 
 export function FeeList({ initialData }: { initialData: FeeRecord[] }) {
-    const [data, setData] = useState(initialData)
     const [filter, setFilter] = useState('ALL') // We can filter locally for speed given reduced payload size
 
-    const filteredData = filter === 'ALL' ? data : data.filter(d => d.status === filter)
+    const filteredData = filter === 'ALL' ? initialData : initialData.filter(d => d.status === filter)
 
     return (
         <div className="space-y-4">

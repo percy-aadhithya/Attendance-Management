@@ -66,68 +66,70 @@ export default async function StudentsPage({
             </div>
 
             <Card>
-                <CardHeader className="px-6 py-4">
+                <CardHeader className="px-4 py-4 md:px-6">
                     <CardTitle>All Students</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead className="w-[100px] sm:pl-6">Name</TableHead>
-                                <TableHead>Location</TableHead>
-                                <TableHead className="hidden md:table-cell">Classes</TableHead>
-                                <TableHead className="hidden md:table-cell">Admission Date</TableHead>
-                                <TableHead>Actions</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {students.length === 0 ? (
+                    <div className="overflow-x-auto">
+                        <Table>
+                            <TableHeader>
                                 <TableRow>
-                                    <TableCell colSpan={5} className="h-24 text-center">
-                                        No students found.
-                                    </TableCell>
+                                    <TableHead className="w-[100px] pl-4 sm:pl-6">Name</TableHead>
+                                    <TableHead>Location</TableHead>
+                                    <TableHead className="hidden md:table-cell">Classes</TableHead>
+                                    <TableHead className="hidden md:table-cell">Admission Date</TableHead>
+                                    <TableHead>Actions</TableHead>
                                 </TableRow>
-                            ) : (
-                                students.map((student: any) => (
-                                    <TableRow key={student.id}>
-                                        <TableCell className="font-medium sm:pl-6">
-                                            <div className="flex flex-col">
-                                                <Link href={`/students/${student.id}`} className="hover:underline">
-                                                    {student.name}
-                                                </Link>
-                                                <span className="text-xs text-muted-foreground md:hidden">
-                                                    {student.location.name}
-                                                </span>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell className="hidden md:table-cell">
-                                            {student.location.name}
-                                        </TableCell>
-                                        <TableCell className="hidden md:table-cell">
-                                            <div className="flex flex-wrap gap-1">
-                                                {student.enrollments.map((e: any) => (
-                                                    <span key={e.class.id} className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
-                                                        {e.class.name}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </TableCell>
-                                        <TableCell className="hidden md:table-cell">
-                                            {student.admissionDate.toLocaleDateString()}
-                                        </TableCell>
-                                        <TableCell>
-                                            <div className="flex items-center gap-2">
-                                                <Link href={`/students/${student.id}/edit`}>
-                                                    <Button variant="ghost" size="sm">Edit</Button>
-                                                </Link>
-                                                <DeleteStudentButton id={student.id} />
-                                            </div>
+                            </TableHeader>
+                            <TableBody>
+                                {students.length === 0 ? (
+                                    <TableRow>
+                                        <TableCell colSpan={5} className="h-24 text-center">
+                                            No students found.
                                         </TableCell>
                                     </TableRow>
-                                ))
-                            )}
-                        </TableBody>
-                    </Table>
+                                ) : (
+                                    students.map((student: any) => (
+                                        <TableRow key={student.id}>
+                                            <TableCell className="font-medium pl-4 sm:pl-6">
+                                                <div className="flex flex-col">
+                                                    <Link href={`/students/${student.id}`} className="hover:underline">
+                                                        {student.name}
+                                                    </Link>
+                                                    <span className="text-xs text-muted-foreground md:hidden">
+                                                        {student.location.name}
+                                                    </span>
+                                                </div>
+                                            </TableCell>
+                                            <TableCell className="hidden md:table-cell">
+                                                {student.location.name}
+                                            </TableCell>
+                                            <TableCell className="hidden md:table-cell">
+                                                <div className="flex flex-wrap gap-1">
+                                                    {student.enrollments.map((e: any) => (
+                                                        <span key={e.class.id} className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+                                                            {e.class.name}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </TableCell>
+                                            <TableCell className="hidden md:table-cell">
+                                                {student.admissionDate.toLocaleDateString()}
+                                            </TableCell>
+                                            <TableCell>
+                                                <div className="flex items-center gap-2">
+                                                    <Link href={`/students/${student.id}/edit`}>
+                                                        <Button variant="ghost" size="sm">Edit</Button>
+                                                    </Link>
+                                                    <DeleteStudentButton id={student.id} />
+                                                </div>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                )}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </CardContent>
             </Card>
         </div>
