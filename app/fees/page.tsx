@@ -1,6 +1,8 @@
 import { getFees } from "@/app/actions/fees"
 import { FeeList } from "@/components/fees/FeeList"
 
+export const dynamic = 'force-dynamic'
+
 export default async function FeesPage({
     searchParams,
 }: {
