@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, Home, Users, CalendarCheck, Banknote } from "lucide-react"
+import { Menu, Home, Users, CalendarCheck, Banknote, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
@@ -13,6 +13,7 @@ const navItems = [
     { href: "/students", label: "Students", icon: Users },
     { href: "/attendance", label: "Attendance", icon: CalendarCheck },
     { href: "/fees", label: "Fees", icon: Banknote },
+    { href: "/reports", label: "Reports", icon: FileText },
 ]
 
 export function MobileHeader() {

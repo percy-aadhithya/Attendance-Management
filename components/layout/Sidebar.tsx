@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Users, CalendarCheck, Home, Banknote, Menu } from "lucide-react"
+import { Users, CalendarCheck, Home, Banknote, Menu, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
@@ -10,6 +10,7 @@ const navItems = [
     { href: "/students", label: "Students", icon: Users },
     { href: "/attendance", label: "Attendance", icon: CalendarCheck },
     { href: "/fees", label: "Fees", icon: Banknote },
+    { href: "/reports", label: "Reports", icon: FileText },
 ]
 
 export function Sidebar() {
