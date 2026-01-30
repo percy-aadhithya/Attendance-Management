@@ -46,6 +46,7 @@ export function FeeList({ initialData }: { initialData: FeeRecord[] }) {
                         <TableRow>
                             <TableHead>Student</TableHead>
                             <TableHead className="hidden md:table-cell">Location</TableHead>
+                            <TableHead>Amount</TableHead>
                             <TableHead>Status</TableHead>
                             <TableHead className="text-right">Action</TableHead>
                         </TableRow>
@@ -84,6 +85,9 @@ function FeeRow({ record }: { record: FeeRecord }) {
                 </div>
             </TableCell>
             <TableCell className="hidden md:table-cell">{record.locationName}</TableCell>
+            <TableCell>
+                {record.amount ? `₹${record.amount}` : '-'}
+            </TableCell>
             <TableCell>
                 <Badge variant={isPaid ? "default" : "destructive"}>
                     {record.status}
